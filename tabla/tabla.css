@@ -1,0 +1,47 @@
+table{
+    border: solid 1px ;
+    background:#636940;    
+    margin-left:26px;
+    width: 95% ;
+    height: 0%;
+}
+th,tr{
+    border: solid 1px b;
+    background:#ffffff;
+}
+h1{
+    text-align:center;
+    font-size: 1em;
+    color: #6af5ff;
+}
+h2{
+    font-size:1em;
+    text-align: center;
+}
+h3{
+
+    font-size: 1em;
+    text-align: center;
+    color:#6af5ff;
+}
+h4{
+    font-size: 1em;
+    text-align: center;
+    }
+td{
+    font-size: 1em;
+}
+p{
+    font-size: 1em;
+    color: #6af  ;
+    text-align: center;
+}
+body{
+
+background-color:#636940;
+
+}
+h6{
+font-size:.15em;
+}
+

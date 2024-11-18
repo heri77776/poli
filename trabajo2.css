@@ -1,0 +1,44 @@
+#centro{
+    text-align:center;
+    color:red;
+    font-family:arial, sans-serif;
+    font-size:1em;
+   }
+   img{
+    width:50%;
+    margin: left 50px;px;
+   }
+   body{
+    background-color:rgb(9, 255, 0);
+   
+   }
+   h3{
+    color:red;
+    font-family:arial, sans-serif;
+    font-size:1em;
+    text-align:center;
+   }
+   h2{
+    color:red;
+    font-family:arial, sans-serif;
+    font-size:1em;
+    text-align:center;
+   }
+   ul{
+    font-family:arial,sans-serif;
+    color:blue;
+   }
+   ol{
+    font-family:arial,sans-serif;
+    color:blue
+   }
+   h4{
+    color:red;
+    font-family:arial, sans-serif;
+    font-size:1em;
+    text-align:center;
+   }
+   p{
+    font-family:arial,sans-serif;
+    color:blue
+   }

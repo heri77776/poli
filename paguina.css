@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css? family=Montserrat Montserrat+Alternates|Poppins&disp ay-swap');
+*{
+margin: 0;
+
+padding:0;
+
+box-sizing: border-box;
+
+font-family: 'Montserrat Alternates', sans-serif;
+}
+body{
+background: url(ESCUELA\ POLITÉCNICA\ U\ de\ G.jpg);
+
+
+background-size: 100vw 200vh;
+
+background-repeat: no-repeat;
+
+}
+
+
+
+
+
+/*Estilos para el encabezado*/
+
+.header {
+
+   width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0; left: 0;
+}
+
+
+
+
+
+
+.container .btn-menu label{
+    color: #ff0000;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+/*menuuuu de aun lado */
+
+#btn-menu{
+
+
+    display: none;
+}
+
+
+
+
+/*color de labarra de aun lado*/
+.cont-menu{
+
+
+ width: 100%;
+ max-width: 250px;
+ background: #3b0801;
+ height:  100vh;
+ position:  relative;
+ transition: all 500ms ease;
+
+
+}
+
+.cont-menu nav{
+    transform: translate(15%);
+}
+
+/*color de la letras del menu de <un lado*/
+.cont-menu nav a{
+
+    display: block;
+    
+
+    text-decoration: none ;
+    padding: 20px;
+    color: #ffffff;
+    border-left:5px solid transparent ;
+    transition: all 400ms ease;
+
+}
+/*color de la linia interactiva del menu */
+.cont-menu nav a:hover{
+    border-left:5px solid #ff00f2 ;
+    background: #1f1f1f;
+
+
+
+}

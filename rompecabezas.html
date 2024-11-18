@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rompecabezas de colores</title>
+<style>
+    
+    .contenedor {
+        display: flex;
+        flex-wrap: wrap;
+        width: 300px;
+        height: 300px;
+    }
+    .pieza {
+        width: 100px;
+        height: 100px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+    .rojo { background-color: red; }
+    .verde { background-color: green; }
+    .azul { background-color: blue; }
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+    <div class="pieza rojo" onclick="intercambiarColor(this)"></div>
+    <div class="pieza verde" onclick="intercambiarColor(this)"></div>
+    <div class="pieza azul" onclick="intercambiarColor(this)"></div>
+    <div class="pieza azul" onclick="intercambiarColor(this)"></div>
+    <div class="pieza rojo" onclick="intercambiarColor(this)"></div>
+    <div class="pieza verde" onclick="intercambiarColor(this)"></div>
+    <div class="pieza verde" onclick="intercambiarColor(this)"></div>
+    <div class="pieza azul" onclick="intercambiarColor(this)"></div>
+    <div class="pieza rojo" onclick="intercambiarColor(this)"></div>
+    <div class="pieza rojo" onclick="intercambiarColor(this)"></div>
+    <div class="pieza verde" onclick="intercambiarColor(this)"></div>
+    <div class="pieza azul" onclick="intercambiarColor(this)"></div> 
+</div>
+
+<script>
+    function intercambiarColor(pieza) {
+        var colores = ['rojo', 'verde', 'azul'];
+        var colorActual = pieza.classList[1];
+        var indiceColor = colores.indexOf(colorActual);
+        var nuevoColor = colores[(indiceColor + 1) % colores.length];
+        pieza.classList.remove(colorActual);
+        pieza.classList.add(nuevoColor);
+    }
+</script>
+
+</body>
+</html>                                                                                                                                     
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rompecabezas</title>
+  <style>
+    body {
+      background-color: #ffeecc; /* Fondo de Página */
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #3366ff; /* Título */
+    }
+    table {
+      border-collapse: collapse;
+      border: 2px solid #ff6666; /* Bordes de la Tabla */
+      background-color: #ffffcc; /* Fondo de la Tabla */
+      margin: 20px auto;
+    }
+    td {
+      width: 50px;
+      height: 50px;
+      border: 1px solid #ff6666; /* Celdas */
+      text-align: center;
+      font-size: 20px;
+      transition: background-color 0.3s; /* Transición de color */
+    }
+    .vowel {
+      color: #66cc99; /* Letras Vocales */
+    }
+  </style>
+</head>
+<body>
+
+<h1>Rompecabezas</h1>
+
+<table>
+  <tr>
+    <td onclick="changeColor(this)">A</td>
+    <td onclick="changeColor(this)">E</td>
+    <td onclick="changeColor(this)">I</td>
+    <td onclick="changeColor(this)">O</td>
+  </tr>
+  <tr>
+    <td onclick="changeColor(this)">B</td>
+    <td onclick="changeColor(this)">C</td>
+    <td onclick="changeColor(this)">D</td>
+    <td onclick="changeColor(this)">E</td>
+  </tr>
+  <tr>
+    <td onclick="changeColor(this)">F</td>
+    <td onclick="changeColor(this)">G</td>
+    <td onclick="changeColor(this)">H</td>
+    <td onclick="changeColor(this)">I</td>
+  </tr>
+  <tr>
+    <td onclick="changeColor(this)">J</td>
+    <td onclick="changeColor(this)">K</td>
+    <td onclick="changeColor(this)">L</td>
+    <td onclick="changeColor(this)">M</td>
+  </tr>
+</table>
+
+<script>
+  function changeColor(cell) {
+    // Generar un color aleatorio en formato hexadecimal
+    var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    cell.style.backgroundColor = randomColor;
+  }
+</script>
+
+</body>
+</html>

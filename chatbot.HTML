@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Escolar</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #720000;
+            color: #fff;
+            display: flex;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        h1 {
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 2em;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        #sidebar {
+            width: 220px;
+            padding: 15px;
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #sidebar h2 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #720000;
+        }
+        #sidebar h3 {
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        #sidebar li {
+            margin: 6px 0;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #sidebar li:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        #chatbox {
+            flex: 1;
+            max-width: 600px;
+            border-radius: 10px;
+            padding: 12px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        #user-input-container {
+            display: flex;
+            width: calc(100% - 20px);
+            max-width: 600px;
+        }
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+            font-size: 0.95em;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s;
+        }
+        #user-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .message {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 5px;
+            line-height: 1.4;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #e1f5fe;
+            align-self: flex-end;
+            border-radius: 10px 10px 0 10px;
+        }
+        .bot-message {
+            background-color: #e8eaf6;
+            align-self: flex-start;
+            border-radius: 10px 10px 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h2>Preguntas que puedes hacer</h2>
+        <h3>Verifica tu ortografía y respeta las mayúsculas.</h3>
+        <ul>
+            <li onclick="setUserInput('Como tramitar el certificado de egresado')">¿Cómo tramitar el certificado de egresado?</li>
+            <li onclick="setUserInput('Informacion de los tramites para las practicas profesionales')">¿Información de los trámites para las prácticas profesionales?</li>
+            <li onclick="setUserInput('Como iniciar el tramite para mis practicas profesionales')">¿Cómo iniciar el trámite para mis prácticas profesionales?</li>
+            <li onclick="setUserInput('Como tramitar una beca')">¿Cómo tramitar una beca?</li>
+            <li onclick="setUserInput('Como tramitar el seguro social por parte de la escuela')">¿Cómo tramitar el seguro social por parte de la escuela?</li>
+            <li onclick="setUserInput('Como tramitar mi constancia de estudios')">¿Cómo tramitar mi constancia de estudios?</li>
+            <li onclick="setUserInput('Donde obtener las hojas para las horas del servicio social')">¿Dónde obtener las hojas para las horas del servicio social?</li>
+            <li onclick="setUserInput('Como tramitar el duplicado de credencial')">¿Cómo tramitar el duplicado de credencial?</li>
+        </ul>
+    </div>
+    <div id="chat-container">
+        <h1>Chatbot Escolar</h1>
+        <div id="chatbox"></div>
+        <div id="user-input-container">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+        
+        <!-- Botón para redirigir a otra página con estilo más pequeño -->
+        <button class="small-button" onclick="window.location.href='http://127.0.0.1:5500/formulario.html'">Ir a otra página</button>
+    </div>
+
+    <script>
+        const chatbox = document.getElementById('chatbox');
+        const userInput = document.getElementById('user-input');
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                appendMessage(message, 'user-message');
+                userInput.value = '';
+                const response = getBotResponse(message);
+                setTimeout(() => {
+                    appendMessage(response, 'bot-message');
+                    chatbox.scrollTop = chatbox.scrollHeight;
+                }, 500);
+            }
+        }
+
+        function appendMessage(message, className) {
+            const div = document.createElement('div');
+            div.textContent = message;
+            div.className = `message ${className}`;
+            chatbox.appendChild(div);
+        }
+
+        function setUserInput(value) {
+            userInput.value = value;
+            userInput.focus();
+        }
+
+        const responses = {
+            'como tramitar el certificado de egresado': 'Debes ingresar a la página de la Escuela Politécnica de Guadalajara con el siguiente link: http://politecnica.sems.udg.mx\nDa click en “Servicios” y luego en “Formatos Aranceles”. Descarga “Certificado Total 2024”, imprímelo, y llénalo con tus datos. Paga en el banco y conserva el comprobante. Entrega el formato, comprobante y 2 fotos en ventanilla de control escolar. El trámite tarda unos 90 días hábiles.',
+            'informacion de los tramites para las practicas profesionales': 'Las prácticas profesionales requieren 200-240 horas. Para comenzar: selecciona una empresa, recibe tu carta de asignación, y realiza las actividades en Moodle hasta finalizar las horas. Solicita la carta de término y evalúa tu desempeño.',
+            'como iniciar el tramite para mis practicas profesionales': 'Define la empresa para tus prácticas, entrega tu hoja de datos y espera autorización. Lleva tu carta de asignación a la empresa y carga la información en Moodle hasta completar tus actividades.',
+            'como tramitar una beca': 'La Escuela Politécnica cuenta con varias becas para estudiantes. Puedes solicitar la Beca Benito Juárez y becas para estudiantes con discapacidad o buen desempeño.',
+            'como tramitar el seguro social por parte de la escuela': 'Envía tus datos al correo imssudg@redudg.udg.mx. Revisa tu vigencia en la app IMSS Digital y elige tu unidad de medicina familiar.',
+            'como tramitar mi constancia de estudios': 'Descarga el formato adecuado, llénalo, realiza el pago, y entrega la documentación en control escolar. El trámite se completa en 24 horas.',
+            'donde obtener las hojas para las horas del servicio social': 'Obtén el formato de servicio social en http://politecnica.sems.udg.mx/servicio-social-0.',
+            'como tramitar el duplicado de credencial': 'Para duplicado, genera tu UUID, realiza una denuncia en línea y solicita el duplicado en SIIAU después de 15 días. Consulta el estatus hasta su entrega.'
+        };
+
+        function getBotResponse(message) {
+            message = message.toLowerCase();
+            return responses[message] || 'Lo siento, no entiendo esa pregunta. ¿Podrías reformularla?';
+        }
+    </script>
+</body>
+</html>

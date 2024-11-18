@@ -1,0 +1,39 @@
+.titulo{
+
+    color:rgb(255, 0, 0);
+    
+    }
+    a{
+        font-size: x-large;
+    }
+    a:link{
+
+        color: blueviolet ;
+        background-color: rgb(0, 0, 84) ;
+        text-decoration-line:none  ;
+    }
+    
+    
+    a:visited{
+        color: yellowgreen ;
+        background-color: rgb(0, 255, 213) ;
+        text-decoration-line:none ;
+    
+    }
+    
+    a:hover{
+        color: brown ;
+        background-color: crimson ;
+        text-decoration-line:underline ;
+    
+    
+    }
+    
+    a:active{
+        color: black ;
+        background-color: darkblue ;
+        text-decoration-line:underline;
+    
+    
+    }
+    
